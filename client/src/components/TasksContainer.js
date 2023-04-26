@@ -9,10 +9,10 @@ const TasksContainer = ({ socket }) => {
   useEffect(() => {
     async function fetchTasks() {
       try {
-        const resp = await fetch("http://localhost:4000/api");
+        const resp = await fetch("https://kanbanboard-hrm4.onrender.com/api");
         // console.log(resp);
         const data = await resp.json();
-        // console.log(data);
+        console.log(data);
         setTasks(data);
       } catch (error) {
         console.log(error);
@@ -45,6 +45,8 @@ const TasksContainer = ({ socket }) => {
     <div className="container">
       <DragDropContext onDragEnd={handleDragEnd}>
         {Object.entries(tasks).map((task) => (
+          // Object entries returns an array of structure ['pending',{title:'pending',items: ->A}]
+          // A -> [{id:'ajhsgj',title:'Task title',comments:[{name:'rohan',text:'Your Comment',id:'hgajhg'}]},{...}]
           <div
             className={`${task[1].title.toLowerCase()}__wrapper`}
             key={task[1].title}
@@ -72,7 +74,7 @@ const TasksContainer = ({ socket }) => {
                               <Link
                                 to={`/comments/${task[1].title}/${item.id}`}
                               >
-                                {item.comments.length > 0
+                                {item.comments && item.comments.length > 0
                                   ? `View Comments`
                                   : "Add Comment"}
                               </Link>

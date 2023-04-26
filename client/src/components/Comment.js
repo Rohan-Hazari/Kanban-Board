@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import socketIO from "socket.io-client";
 import { useParams, Link } from "react-router-dom";
 
-const socket = socketIO.connect("http://localhost:4000");
+// const socket = socketIO.connect("http://localhost:4000");
+const socket = socketIO.connect("https://kanbanboard-hrm4.onrender.com/");
 
 const Comment = () => {
   const { category, id } = useParams();

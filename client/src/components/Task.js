@@ -4,7 +4,8 @@ import Nav from "./Nav";
 import TaskContainer from "./TasksContainer";
 import socketIO from "socket.io-client";
 
-const socket = socketIO.connect("http://localhost:4000");
+// const socket = socketIO.connect("http://localhost:4000");
+const socket = socketIO.connect("https://kanbanboard-hrm4.onrender.com/");
 
 const Task = () => {
   return (
