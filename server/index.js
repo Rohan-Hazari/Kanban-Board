@@ -1,9 +1,10 @@
 const express = require("express");
 const app = express();
-const PORT = 4000;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+require("dotenv").config();
 
 const http = require("http").Server(app);
 const cors = require("cors");
@@ -137,6 +138,8 @@ let tasks = {
 app.get("/api", (req, res) => {
   res.json(tasks);
 });
+
+const PORT = process.env.PORT || 4000;
 
 http.listen(PORT, () => {
   console.log(`Server is listening on PORT ${PORT}`);
